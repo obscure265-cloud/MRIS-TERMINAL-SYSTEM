@@ -4466,10 +4466,144 @@
         display: flex !important;
             }
         }
+
+            .desktop-quit-button {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 0, 0, 0.1);
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        color: rgba(255, 0, 0, 0.4);
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(2px);
+    }
+
+    .desktop-quit-button:hover {
+        background: rgba(255, 0, 0, 0.2);
+        color: rgba(255, 0, 0, 0.7);
+        border-color: rgba(255, 0, 0, 0.5);
+    }
+
+    .quit-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10001;
+        justify-content: center;
+        align-items: center;
+        font-family: 'MS Sans Serif', Arial, sans-serif;
+    }
+
+    .quit-modal-content {
+        width: 300px;
+        background: #c0c0c0;
+        border: 2px solid;
+        border-top-color: #dfdfdf;
+        border-left-color: #dfdfdf;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .quit-modal-header {
+        background: linear-gradient(90deg, #000080, #1084d0);
+        color: white;
+        padding: 4px 8px;
+        font-size: 13px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .quit-modal-title {
+        flex: 1;
+    }
+
+    .quit-modal-body {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: #c0c0c0;
+    }
+
+    .quit-modal-icon {
+        font-size: 24px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .quit-modal-message {
+        font-size: 12px;
+        color: #000;
+        line-height: 1.4;
+    }
+
+    .quit-modal-footer {
+        padding: 8px;
+        text-align: center;
+        background: #c0c0c0;
+        border-top: 1px solid #808080;
+    }
+
+    .quit-btn {
+        padding: 4px 12px;
+        margin: 0 5px;
+        border: 2px solid;
+        border-top-color: #dfdfdf;
+        border-left-color: #dfdfdf;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        background: #c0c0c0;
+        font-family: 'MS Sans Serif', Arial, sans-serif;
+        font-size: 11px;
+        cursor: pointer;
+        min-width: 60px;
+    }
+
+    .quit-btn:active {
+        border-top-color: #808080;
+        border-left-color: #808080;
+        border-right-color: #dfdfdf;
+        border-bottom-color: #dfdfdf;
+    }
+
+    .quit-yes {
+        background: #c0c0c0;
+    }
+
+    .quit-no {
+        background: #c0c0c0;
+    }
+
+@media (min-width: 769px) {
+    .desktop-quit-button {
+        display: flex;
+    }
+}
     </style>
 </head>
 
 <body>
+<div id="desktop-quit-btn" class="desktop-quit-button">×</div>
 
     <div class="vhs-overlay" id="vhs-overlay">
         <div class="vhs-scanlines"></div>
@@ -4888,7 +5022,7 @@
 
                         <div class="output-line">
                             <span class="output-prefix">[NOTE]</span>
-                            <span class="output-text"> These are only the shown documents to the puplic and the rest of the documnents remained classified.</span>
+                            <span class="output-text"> These are only the authorized documents and the rest of the documnents remains classified.</span>
                         </div>
                     </div>
                 </div>
@@ -4918,7 +5052,7 @@
             </div>
             <div class="modal-description" id="modal-origin-description">
                 <div class="document-section">
-                    <strong style="font-size: 20px;">> M.R.I.S. Summary Documents #WH-016 - #WH-019 | Compiled and made by "Prof. K. Novak", "Dr. V. Anatoly" & Other Workers - (1981-1994).</strong><br><br>
+                    <strong style="font-size: 20px;">> M.R.I.S. Summary Documents #WH-016 - #WH-019 | - (Initiation Date: 1982).</strong><br><br>
                     <span class="document-arrow">→</span> The Wild Humans, also known as Human Predators, were a species spoken of in past centuries. Some claimed they lived alongside early humans, while others believed they existed long before us, but the truth remains uncertain. Few travelers ever documented them in detail, and fewer still described them accurately. However, most accounts agreed on their feral nature, their aggression, and their instinct for dominance. These beings, later classified as Homo sapiens ferus, were significantly larger and taller than the average human. This distinction set them apart, yet they were not entirely unlike us.
                 </div>
 
@@ -5427,6 +5561,8 @@
             initializeImmersiveModes();
 
             initializeVHSEffect();
+
+            setupDesktopQuitButton();
         });
 
         function initializeVHSEffect() {
@@ -5758,7 +5894,7 @@
                     name: "Dr. V. Anatoly",
                     status: "terminated",
                     role: "Doctor & Biology Chemist",
-                    terminationDate: "2008",
+                    terminationDate: "2013",
                     image: "https://files.catbox.moe/orzkvs.png"
                 },
                 {
@@ -5766,7 +5902,7 @@
                     name: "Prof. K. Jaison",
                     status: "terminated",
                     role: "Professor & Chemist",
-                    terminationDate: "2015",
+                    terminationDate: "1994",
                     image: "https://files.catbox.moe/orzkvs.png"
                 },
                 {
@@ -7145,8 +7281,81 @@
                 if (mobileNotification) mobileNotification.classList.remove('active');
             }
         }
+        function setupDesktopQuitButton() {
+    const quitButton = document.getElementById('desktop-quit-btn');
+    const quitModal = document.getElementById('quit-modal');
+    const quitYes = document.querySelector('.quit-yes');
+    const quitNo = document.querySelector('.quit-no');
+
+    if (!quitButton || !quitModal) return;
+
+    quitButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        quitModal.style.display = 'flex';
+        
+        // Play click sound if enabled
+        const clickToggle = document.getElementById('click-toggle');
+        const clickSound = document.getElementById('clickSound');
+        if (clickToggle && clickToggle.textContent === 'ON' && clickSound) {
+            clickSound.currentTime = 0;
+            clickSound.play().catch(e => console.log('Click sound failed'));
+        }
+    });
+
+    if (quitYes) {
+        quitYes.addEventListener('click', function() {
+            window.location.href = 'https://obscure265-cloud.github.io/USER972_SYSTEM_98/'; 
+        });
+    }
+
+    if (quitNo) {
+        quitNo.addEventListener('click', function() {
+            quitModal.style.display = 'none';
+            
+            // Play click sound if enabled
+            const clickToggle = document.getElementById('click-toggle');
+            const clickSound = document.getElementById('clickSound');
+            if (clickToggle && clickToggle.textContent === 'ON' && clickSound) {
+                clickSound.currentTime = 0;
+                clickSound.play().catch(e => console.log('Click sound failed'));
+            }
+        });
+    }
+
+    // Close modal when clicking outside
+    quitModal.addEventListener('click', function(e) {
+        if (e.target === quitModal) {
+            quitModal.style.display = 'none';
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && quitModal.style.display === 'flex') {
+            quitModal.style.display = 'none';
+        }
+    });
+}
     </script>
+    <div id="quit-modal" class="quit-modal">
+    <div class="quit-modal-content">
+        <div class="quit-modal-header">
+            <span class="quit-modal-title">M.R.I.S Terminal</span>
+        </div>
+        <div class="quit-modal-body">
+            <div class="quit-modal-icon">⚠️</div>
+            <div class="quit-modal-message">
+                Are you sure you want to quit MRIS_SQS_DEVICE_091?
+            </div>
+        </div>
+        <div class="quit-modal-footer">
+            <button class="quit-btn quit-yes">Yes</button>
+            <button class="quit-btn quit-no">No</button>
+        </div>
+    </div>
+</div>
 </body>
 
 
 </html>
+
