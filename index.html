@@ -4593,10 +4593,31 @@
     .quit-no {
         background: #c0c0c0;
     }
+.desktop-quit-button {
+    display: flex !important;
+}
 
-@media (min-width: 769px) {
+/* Optional: Adjust positioning/size for mobile if needed */
+@media (max-width: 768px) {
     .desktop-quit-button {
-        display: flex;
+        top: 10px;
+        left: 10px;
+        width: 25px;
+        height: 25px;
+        font-size: 16px;
+        background: rgba(255, 0, 0, 0.2);
+        border: 1px solid rgba(255, 0, 0, 0.5);
+        color: rgba(255, 0, 0, 0.7);
+    }
+}
+
+@media (max-width: 480px) {
+    .desktop-quit-button {
+        top: 8px;
+        left: 8px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
     }
 }
     </style>
@@ -7358,15 +7379,4 @@
     </div>
 </div>
 </body>
-
-
 </html>
-
-
-
-
-
-
-
-
-
