@@ -1,10 +1,10 @@
 <!DOCTYPE html>
+<!-- Copyright [2026] [OBSCURE] - All Rights Reserved -->
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="obscure" content="M.R.I.S TERMINAL" />
+    <meta name="obscure" content="M.R.I.S 972" />
     <title>M.R.I.S. TERMINAL</title>
     <link rel="icon" type="image/x-icon" href="https://files.catbox.moe/qnucys.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -721,14 +721,16 @@
             min-width: 80px;
         }
         
-        .volume-slider {
-            flex: 1;
-            height: 6px;
-            background: rgba(0, 30, 0, 0.7);
-            border-radius: 3px;
-            outline: none;
-            -webkit-appearance: none;
-        }
+             .volume-slider {
+    flex: 1;
+    height: 6px;
+    background: rgba(0, 30, 0, 0.7);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;  
+    -moz-appearance: none;     
+    appearance: none;          
+}
         
         .volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
@@ -2969,13 +2971,7 @@
             .volume-slider {
                 width: 100%;
             }
-        
-            .smol-help-terminal {
-                display: none !important;
-            }
-            .smol-terminal-toggle {
-                display: none;
-            }
+           
         }
         
         @media (max-width: 768px) {
@@ -4620,10 +4616,71 @@
         font-size: 14px;
     }
 }
+
+/* Watermark notification */
+.version-watermark {
+    position: fixed;
+    background: rgba(0, 30, 0, 0.85);
+    border: 1px solid #ff003c;
+    color: #ff003c;
+    padding: 12px 15px;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    text-shadow: 0 0 5px #ff003c;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+    border-radius: 4px;
+    max-width: 300px;
+    line-height: 1.4;
+    animation: watermarkPulse 2s infinite;
+}
+
+@keyframes watermarkPulse {
+    0% { box-shadow: 0 0 10px rgba(255, 0, 60, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(255, 0, 60, 0.5); }
+    100% { box-shadow: 0 0 10px rgba(255, 0, 60, 0.2); }
+}
+
+/* Desktop positioning */
+@media (min-width: 769px) {
+    .version-watermark {
+        bottom: 870px;
+        left: 20px;
+    }
+}
+
+/* Mobile positioning */
+@media (max-width: 768px) {
+    .version-watermark {
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 350px;
+        text-align: center;
+    }
+}
+
+/* Hide on very small screens if needed */
+@media (max-width: 480px) {
+    .version-watermark {
+        top: 50px;
+        width: 95%;
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
     </style>
 </head>
 
 <body>
+
+    <body>
+<div class="version-watermark" id="version-watermark">
+    The current version of SQS_091.ver is outdated, and this version is offline. To update the version, type in the terminal /update.
+</div>
+
 <div id="desktop-quit-btn" class="desktop-quit-button">×</div>
 
     <div class="vhs-overlay" id="vhs-overlay">
@@ -4791,10 +4848,7 @@
                         </div>
                         <div class="notification-content">
                             <div class="notification-placeholder">
-
-                                <p style="color: rgb(0, 255, 98); font-weight: bold; font-style: italic;">Hi. This is OBSCURE</p>
-                                <p><span style="font-weight: bolder; color: rgb(0, 255, 102);">› ABOUT THIS TERMINAL WEBSITE:</span> This website works as the archive and home base for all the characters I create on JanitorAI. Whenever I publish a new chatbot, its full origin file appears here so users can explore its background, story, and its technical details. The site is still in (BETA) mode, so its always in update mode. Each new character is added with its own set of documents that explain how it was made and what sets it apart, and some of them contain hidden secrets and easter eggs for upcoming chatbots or lores. It serves as a central place where users can dive into the world behind every character in a clear and organized way, and if you ever want to reach out, ask questions, or follow the work more closely, you can always connect with me through my social accounts by clicking <a href="https://obscure265-cloud.github.io/obscure25685/" target="_blank">𝙷𝙴𝚁𝙴</a>, and if you are in desktop mode just type <span style="color:rgb(0, 255, 94); font-weight: bolder;">/help</span> in the terminal window.
-                                <p style="font-style: italic;">Enjoy.</p>
+                                <p><span style="font-weight: bolder; color: rgb(255, 0, 0);"> UPDATE THE TERMINAL TO VIEW THE MESSAGE.
                                 </p>
                             </div>
                         </div>
@@ -4971,8 +5025,8 @@
             </div>
         </div>
 
-       <footer>
-            <p>© Morphic Resonance Integration Studies © (1939–2025)</p>
+        <footer>
+            <p>© M.R.I.S | ПЦАИ | MSVG © (1942–2025)</p>
             <div class="watermark"><a href="https://x.com/OBSCURE322173" class="entity-link" target="_blank">© OBSCURE © (2022–2025)</a></div>
         </footer>
     </div>
@@ -6517,208 +6571,214 @@
         }
 
         function initializeTerminal() {
-            const terminal = document.getElementById('smol-terminal');
-            const terminalInput = document.getElementById('smol-terminal-input');
-            const terminalOutput = document.getElementById('smol-terminal-output');
-            const terminalClose = document.getElementById('smol-terminal-close');
+    const terminal = document.getElementById('smol-terminal');
+    const terminalInput = document.getElementById('smol-terminal-input');
+    const terminalOutput = document.getElementById('smol-terminal-output');
+    const terminalClose = document.getElementById('smol-terminal-close');
 
-            if (!terminal || !terminalInput || !terminalOutput) {
-                console.log('Terminal elements not found');
-                return;
-            }
+    if (!terminal || !terminalInput || !terminalOutput) {
+        console.log('Terminal elements not found');
+        return;
+    }
 
-            const socialLinks = {
-                'discord': {
-                    url: 'https://discordapp.com/users/1433583472240234596',
-                    name: 'Discord'
-                },
-                'x': {
-                    url: 'https://x.com/OBSCURE322173',
-                    name: 'Twitter'
-                },
-                'chubai': {
-                    url: 'https://chub.ai/users/OBSCURE265',
-                    name: 'ChubAI'
-                },
-                'janitor': {
-                    url: 'https://janitorai.com/profiles/45af9511-3411-40db-8737-217fcb7284e8_profile-of-obscure',
-                    name: 'JanitorAI (My Profile)'
-                }
-            };
-
-            if (window.innerWidth > 768) {
-                setTimeout(() => {
-                    terminal.classList.add('active');
-                    setTimeout(() => {
-                        terminalInput.focus();
-                    }, 100);
-                }, 3000);
-            }
-
-            terminalInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    const command = this.value.trim().toLowerCase();
-                    this.value = '';
-
-                    addOutputLine('> ' + command, 'command');
-
-                    if (command === '/help') {
-                        showHelp();
-                    } else if (command === '/clear') {
-                        clearTerminal();
-                    } else if (command === '/close') {
-                        terminal.classList.remove('active');
-                    } else if (command.startsWith('/')) {
-                        const socialCommand = command.substring(1);
-                        if (socialLinks[socialCommand]) {
-                            redirectToSocial(socialLinks[socialCommand]);
-                        } else {
-                            addOutputLine('Unknown command: ' + command, 'error');
-                        }
-                    } else if (command) {
-                        addOutputLine('Unknown command: ' + command, 'error');
-                    }
-
-                    setTimeout(() => {
-                        terminalInput.focus();
-                    }, 50);
-                }
-            });
-
-            if (terminalClose) {
-                terminalClose.addEventListener('click', function() {
-                    terminal.classList.remove('active');
-                });
-            }
-
-            function showHelp() {
-                const helpText = [
-                    "Available Commands:",
-                    "────────────────────",
-                    "Discord (obscure2652) = /discord",
-                    "Twitter (For Updates) = /x",
-                    "ChubAI = /chubai",
-                    "JanitorAI = /janitor",
-                    "────────────────────",
-                    "Clear = /clear",
-                    "Close = /close"
-                ];
-
-                const currentOutput = terminalOutput.innerHTML;
-                terminalOutput.innerHTML = '';
-
-                const commandLine = document.createElement('div');
-                commandLine.className = 'smol-output-line';
-                commandLine.innerHTML = `<span class="smol-prompt">></span><span class="smol-text" style="color: var(--main-glow)"> /help</span>`;
-                terminalOutput.appendChild(commandLine);
-
-                typeText(helpText, 0, 50);
-            }
-
-            function typeText(lines, lineIndex, speed) {
-                if (lineIndex >= lines.length) return;
-
-                const line = lines[lineIndex];
-                const lineElement = document.createElement('div');
-                lineElement.className = 'smol-output-line';
-
-                if (lineIndex === 0) {
-
-                    lineElement.innerHTML = `<span class="smol-prompt">></span><span class="smol-text" style="color: var(--main-glow)"></span>`;
-                } else if (line.includes('─')) {
-
-                    lineElement.innerHTML = `<span class="smol-prompt"> </span><span class="smol-text" style="color: var(--text-secondary)"></span>`;
-                } else {
-
-                    lineElement.innerHTML = `<span class="smol-prompt"> </span><span class="smol-text" style="color: var(--text-primary)"></span>`;
-                }
-
-                terminalOutput.appendChild(lineElement);
-                const textElement = lineElement.querySelector('.smol-text');
-
-                let charIndex = 0;
-
-                function typeChar() {
-                    if (charIndex < line.length) {
-                        textElement.textContent += line.charAt(charIndex);
-                        charIndex++;
-                        terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                        setTimeout(typeChar, speed);
-                    } else {
-
-                        setTimeout(() => {
-                            typeText(lines, lineIndex + 1, speed);
-                        }, 100);
-                    }
-                }
-
-                typeChar();
-            }
-
-            function redirectToSocial(social) {
-                addOutputLine(`Redirecting to ${social.name}...`, 'success');
-                setTimeout(() => {
-                    window.open(social.url, '_blank');
-                }, 1000);
-            }
-
-            function addOutputLine(text, type = 'normal') {
-                const line = document.createElement('div');
-                line.className = 'smol-output-line';
-
-                let prompt = '';
-                let textColor = 'var(--text-primary)';
-
-                switch (type) {
-                    case 'command':
-                        prompt = '>';
-                        textColor = 'var(--main-glow)';
-                        break;
-                    case 'error':
-                        prompt = '!';
-                        textColor = 'var(--error-glow)';
-                        break;
-                    case 'success':
-                        prompt = '✓';
-                        textColor = 'var(--main-glow)';
-                        break;
-                    case 'info':
-                        prompt = 'i';
-                        textColor = 'var(--text-secondary)';
-                        break;
-                    default:
-                        prompt = '>';
-                }
-
-                line.innerHTML = `
-                    <span class="smol-prompt">${prompt}</span>
-                    <span class="smol-text" style="color: ${textColor}">${text}</span>
-                `;
-
-                terminalOutput.appendChild(line);
-                terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            }
-
-            function clearTerminal() {
-                terminalOutput.innerHTML = '';
-                addOutputLine('Terminal cleared. Type /help for assistance', 'info');
-            }
-
-            const toggleBtn = document.createElement('div');
-            toggleBtn.className = 'smol-terminal-toggle';
-            toggleBtn.innerHTML = '>';
-            toggleBtn.addEventListener('click', function() {
-                terminal.classList.add('active');
-                setTimeout(() => {
-                    terminalInput.focus();
-                }, 100);
-            });
-            document.body.appendChild(toggleBtn);
-
-            terminal.addEventListener('click', function() {
+    if (window.innerWidth > 768) {
+        setTimeout(() => {
+            terminal.classList.add('active');
+            setTimeout(() => {
                 terminalInput.focus();
-            });
+            }, 100);
+        }, 3000);
+    }
+
+    terminalInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const command = this.value.trim().toLowerCase();
+            this.value = '';
+
+            addOutputLine('> ' + command, 'command');
+
+            if (command === '/help') {
+                showHelp();
+            } else if (command === '/clear') {
+                clearTerminal();
+            } else if (command === '/close') {
+                terminal.classList.remove('active');
+            } else if (command === '/update') {
+                startUpdate();
+            } else if (command.startsWith('/')) {
+                addOutputLine('Unknown command: ' + command, 'error');
+            } else if (command) {
+                addOutputLine('Unknown command: ' + command, 'error');
+            }
+
+            setTimeout(() => {
+                terminalInput.focus();
+            }, 50);
         }
+    });
+
+    if (terminalClose) {
+        terminalClose.addEventListener('click', function() {
+            terminal.classList.remove('active');
+        });
+    }
+
+    function showHelp() {
+        const helpText = [
+            "Available Commands:",
+            "────────────────────",
+            "Update System = /update",
+            "────────────────────",
+            "Clear = /clear",
+            "Close = /close"
+        ];
+
+        const currentOutput = terminalOutput.innerHTML;
+        terminalOutput.innerHTML = '';
+
+        const commandLine = document.createElement('div');
+        commandLine.className = 'smol-output-line';
+        commandLine.innerHTML = `<span class="smol-prompt">></span><span class="smol-text" style="color: var(--main-glow)"> /help</span>`;
+        terminalOutput.appendChild(commandLine);
+
+        typeText(helpText, 0, 50);
+    }
+
+    function startUpdate() {
+        addOutputLine('Starting system update...', 'info');
+        
+        // Simulate update progress
+        const progressSteps = [
+            'Connecting to update server...',
+            'Downloading update package (0%)...',
+            'Downloading update package (25%)...',
+            'Downloading update package (50%)...',
+            'Downloading update package (75%)...',
+            'Downloading update package (100%)...',
+            'Verifying update integrity...',
+            'Applying system patches...',
+            'Finalizing update...',
+            'Update complete!'
+        ];
+        
+        let stepIndex = 0;
+        
+        function nextStep() {
+            if (stepIndex < progressSteps.length) {
+                const prompt = stepIndex === progressSteps.length - 1 ? '✓' : '>';
+                const type = stepIndex === progressSteps.length - 1 ? 'success' : 'info';
+                
+                addOutputLine(progressSteps[stepIndex], type);
+                stepIndex++;
+                
+                // Random delay between steps to simulate real update
+                const delay = stepIndex === progressSteps.length - 1 ? 1500 : 500 + Math.random() * 500;
+                setTimeout(nextStep, delay);
+            } else {
+                // Redirect after update is complete
+                addOutputLine('Redirecting to update portal...', 'success');
+                setTimeout(() => {
+                    window.open('https://obscure265-cloud.github.io/MRIS-OPERATION-SYSTEM/');
+                }, 2000);
+            }
+        }
+        
+        setTimeout(nextStep, 1000);
+    }
+
+    function typeText(lines, lineIndex, speed) {
+        if (lineIndex >= lines.length) return;
+
+        const line = lines[lineIndex];
+        const lineElement = document.createElement('div');
+        lineElement.className = 'smol-output-line';
+
+        if (lineIndex === 0) {
+            lineElement.innerHTML = `<span class="smol-prompt">></span><span class="smol-text" style="color: var(--main-glow)"></span>`;
+        } else if (line.includes('─')) {
+            lineElement.innerHTML = `<span class="smol-prompt"> </span><span class="smol-text" style="color: var(--text-secondary)"></span>`;
+        } else {
+            lineElement.innerHTML = `<span class="smol-prompt"> </span><span class="smol-text" style="color: var(--text-primary)"></span>`;
+        }
+
+        terminalOutput.appendChild(lineElement);
+        const textElement = lineElement.querySelector('.smol-text');
+
+        let charIndex = 0;
+
+        function typeChar() {
+            if (charIndex < line.length) {
+                textElement.textContent += line.charAt(charIndex);
+                charIndex++;
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                setTimeout(typeChar, speed);
+            } else {
+                setTimeout(() => {
+                    typeText(lines, lineIndex + 1, speed);
+                }, 100);
+            }
+        }
+
+        typeChar();
+    }
+
+    function addOutputLine(text, type = 'normal') {
+        const line = document.createElement('div');
+        line.className = 'smol-output-line';
+
+        let prompt = '';
+        let textColor = 'var(--text-primary)';
+
+        switch (type) {
+            case 'command':
+                prompt = '>';
+                textColor = 'var(--main-glow)';
+                break;
+            case 'error':
+                prompt = '!';
+                textColor = 'var(--error-glow)';
+                break;
+            case 'success':
+                prompt = '✓';
+                textColor = 'var(--main-glow)';
+                break;
+            case 'info':
+                prompt = '>';
+                textColor = 'var(--text-secondary)';
+                break;
+            default:
+                prompt = '>';
+        }
+
+        line.innerHTML = `
+            <span class="smol-prompt">${prompt}</span>
+            <span class="smol-text" style="color: ${textColor}">${text}</span>
+        `;
+
+        terminalOutput.appendChild(line);
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    }
+
+    function clearTerminal() {
+        terminalOutput.innerHTML = '';
+        addOutputLine('Terminal cleared. Type /help for assistance', 'info');
+    }
+
+    const toggleBtn = document.createElement('div');
+    toggleBtn.className = 'smol-terminal-toggle';
+    toggleBtn.innerHTML = '>';
+    toggleBtn.addEventListener('click', function() {
+        terminal.classList.add('active');
+        setTimeout(() => {
+            terminalInput.focus();
+        }, 100);
+    });
+    document.body.appendChild(toggleBtn);
+
+    terminal.addEventListener('click', function() {
+        terminalInput.focus();
+    });
+}
 
         function checkMobileDevice() {
             const mobileNotification = document.getElementById('mobile-notification');
@@ -7375,6 +7435,3 @@
 </div>
 </body>
 </html>
-
-
-
